@@ -1,0 +1,14 @@
+
+											Javascript.isSexy
+										OOP In JavaScript: What You NEED to Know
+								(Object Oriented JavaScript: Only Two Techniques Matter)
+
+==============================================================================================================
+1. ВОВЕД во ООП
+==============================================================================================================
+
+- Во ООП ЈavaScript само ДВЕ техники се важни
+	* JavaScript Objects
+	* JavaScript Prototypes
+
+
