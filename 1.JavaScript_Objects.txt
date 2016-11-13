@@ -1,0 +1,526 @@
+
+											Javascript.isSexy
+										JavaScript Objects in Detail
+											JavaScript Објекти
+
+==============================================================================================================
+1. ВОВЕД
+==============================================================================================================
+
+- Основен JavaScript податочен тип (data type) е Објектниот податочен тип (Object data type).
+
+- JavaScript има: 
+		* еден комплексен дата тип 							(complex data type)
+		* Објектен податочен тип 							(Object data type)
+		* И 5 едноставни или промитивни податочни типови 	(five simple or primitive data types)
+				~ Number
+				~ String
+				~ Boolean
+				~ Undefined
+				~ Null
+
+- Примитивните податочни типови се непроменливи 
+
+- Објектите можат да се менуваат т.е. се променливи
+
+==============================================================================================================
+2. Што е Објект во JS?
+==============================================================================================================
+
+- Објект е неподредена листа на примитивни податочни типови ( некогаш и референцирачки податочни типови )
+  кои се чуваат како парови од вредностни имиња (stored by a name-value pair).
+
+- Секој елемент (item) во листата се нарекува сопственост (property).
+
+- Функциите се нарекуваат методи (methods).
+
+- Пример на обичен објект во JS:
+		
+		* var myFirstObject = { 
+			firstName="Angjel", 
+			favoriteAuthor="Tolkin" 
+		  };
+
+		* Објектот е еден вид на листа која содржи елементи (items), 
+		  каде што секој елемент (item), безразлика дали е сопственост (property) или метода (method),
+		  во листата се чуваат како парови од имиња и вредности (stored by a name-value pair).
+
+		* во примерот погоре 
+				~ имиња на сопственост се firstName и favoriteAuthor.
+				~ А вредностите нивни се "Angjel" и "Tolkin".
+
+- Имиња на сопственост (Property names) можат да бидат String или Number => ("ime" или 1)
+
+- Но ако името на сопственост (Property name) e број, пристапот до него е со наводници.
+		* 	var ageGroup = {
+				30: "Children", 
+				100:"Very Old"
+			};
+			
+			console.log(ageGroup.30) 		// Ова ќе фрли грешка.
+			
+			console.log(ageGroup["30"]); 	// Ова ќе испише "Children" во конзолата.​
+​
+​		* НО НАЈДОБРО Е ДА ИЗБЕГНУВАМЕ ДА ГО СТАВАМЕ "Propery name" КАКО БРОЈКА!!! 
+
+- Како JavaScript developer многу често ќе користиме објектен податочен тип (Object data type) 
+  најчесто за чување на податоци и создавање на свој методи и функции.
+
+==============================================================================================================
+3. Референцирачки податочни типови и Примитивни податочни типови (Reference Data Type and Primitive Data Types)
+==============================================================================================================
+
+- Една од главните разлики помеѓу Референцирачките и Примитивните податочни типови е во вредноста на 
+  референцирачките вредности што се чуваат како референци, не се чуваат директно во вариабла 
+  како вредност како што се примитивните податочни типови.
+
+  		* Примитивен Податочен Тип:
+
+  		  	// Примитивниот податочен тип String се чува како вредност.
+			​var person = "Kobe";  				// person има String вредност "Kobe"
+			​var anotherPerson = person; 		// anotherPerson = ја има врендоста на person​
+			person = "Bryant"; 					// вредноста на person е променета во "Bryant"
+			​
+			console.log(anotherPerson); 		// Kobe​
+			console.log(person); 				// Bryant
+
+
+		* Референцирачки Податочен Тип:
+
+			var person = {name: "Kobe"};		// персон е објект со Property name => name со вредност "Kobe"
+			​var anotherPerson = person;			// се копира person Објектот во anotherPerson		
+			person.name = "Bryant";				// вредноста на Property name, person.name е променета во "Bryant"
+			​
+			console.log(anotherPerson.name); 	// Bryant​
+			console.log(person.name); 			// Bryant
+
+			// Бидејќи вредноста на person е зачувана како референца, но не како вредност, кога ќе ja промениме
+			// сопственоста(property) на person.name во "Bryant", 
+			
+			// anotherPerson ги рефлектира промените затоа што никогаш не ја зачувува копијата на сопствените вредности
+			// од својствата на person, туку само референцира до нив.
+
+==============================================================================================================
+4. Својствата на Објектните Податоци имаат Атрибути
+==============================================================================================================
+
+- Секоја (data property) податочна сопственост (податочна сопственост која чува податоци) нема само пар
+  од имиња и вредности (name-value pair), исто така има и 3 атрибути кои по дифолт се со вредност true.
+
+  		* Конфигурабилни атрибути (Configurable Attribute) = одредува дали сопственоста(propery) може
+  		  да се брише или менува 
+  		
+  		* Преброив 	(Enumerable) = одредува дали сопственоста(propery) може да биде вратена(returned) 
+  		  во for/in loop
+
+  		* Запишувачки 	(Writable) = одредува дали сопственоста(propery) може да се менува.
+
+
+==============================================================================================================
+5. Креирање Објекти
+==============================================================================================================
+
+- Постојат два начина на креирање на објект:
+		
+		1. Object Literals (Буквални Објекти)
+
+			* Најупотребуваниот и најлесниот начин на креирање објект е со Object Literals:
+
+					~ Пример:
+						// Ова е празен иницијализиран објект myBooks кој користи object literal notation​
+						​var myBooks = {};
+						​
+						​// Ова е објект со 4 елементи (items), кој користи object literal​ 
+						​var mango = {
+							color: "yellow",
+							shape: "round",
+							sweetness: 8,
+							​
+							​howSweetAmI: function () {
+								console.log("Hmm Hmm Good");
+							}
+						}
+
+		2. Object Constructor (Објект со конструктор)
+
+				* Вториот популарен начин за креирање на објекти е со Object Constructor.
+				* Конструктор е функција која се користи за иницијализирање на нов Објект 
+				  и го користиме клучниот збор new за да го повикаме конструкторот:
+
+						~ Пример:
+							var mango =  new Object ();
+							mango.color = "yellow";
+							mango.shape= "round";
+							mango.sweetness = 8;
+							​
+							mango.howSweetAmI = function () {
+								console.log("Hmm Hmm Good");
+							}
+
+				* Објектите може да содржат било каков податочен тип (data type) вклучувајки 
+						~ Броеви
+						~ Низи 
+						~ Други објекти (објект во објект)
+
+==============================================================================================================
+6. ПРАКТИЧЕН Pattern ЗА КРЕИРАЊЕ ОБЈЕКТ
+==============================================================================================================
+
+		* За креирање едноставни Објекти кои би ги искористел само еднаш во апликацијата
+		  двата начина на креирање Објект (Object Literals & Object Constructor) се сосема 
+		  доволни.
+
+		* Замисли си дека имаш апликација што прикажува Овошје и детали за секое овошје поединечно.
+		* Сите овошја во твојата апликација ги имаат овие сопствености (properies):
+		  		~ color,
+		  		~ shape,
+		  		~ sweetness,
+		  		~ cost,
+		  		~ and showName function
+		* Би било прилично досадно и контрапродуктивно да го пишуваме следново, секој пат кога би 
+		  сакале да креираме нов Објект од Овошје (create a new fruit object)
+		  		~ Пример:
+		  			var mangoFruit = {
+						color: "yellow",
+						sweetness: 8,
+						fruitName: "Mango",
+						nativeToLand: ["South America", "Central America"],
+						​
+						​showName: function () {
+							console.log("This is " + this.fruitName);
+						},
+						​nativeTo: function () {
+						 this.nativeToLand.forEach(function (eachCountry)  {
+						            console.log("Grown in:" + eachCountry);
+						        });
+						}
+					}
+		* И доколку би имал 10 овошја, ќе треба 10 пати да го напишеме кодов.
+		* И доколку треба да направиме промена во nativeTo функцијата, ќе треба да се направи
+		  промена на 10 различни места.
+		* Начинот на кој ние креиравме објекти до сега не е идеален, особено за голема апликација
+		* за да го РЕШИМЕ овој повторувачки проблем, софтверските инжинери измислиле Модели (patterns) 
+		  (тоа се решенија за повторувачки и заеднички работни задачи) за да ја направат апликацијата 
+		  поефективна и порационална.
+		
+==============================================================================================================
+7. Ова се двата Модела(patterns) за креирање Објект:
+==============================================================================================================
+
+		1.Constructor Pattern for Creating Objects ---------------------------------------------
+
+			function Fruit (theColor, theSweetness, theFruitName, theNativeToLand) {
+​
+			    this.color = theColor;
+			    this.sweetness = theSweetness;
+			    this.fruitName = theFruitName;
+			    this.nativeToLand = theNativeToLand;
+			​
+			    this.showName = function () {
+			        console.log("This is a " + this.fruitName);
+			    }
+			​
+			    this.nativeTo = function () {
+				    this.nativeToLand.forEach(function (eachCountry)  {
+				       console.log("Grown in:" + eachCountry);
+				    });
+			    }
+			}
+
+			* Со овој Модел(pattern) е многу лесно да креираме секаков вид на Овошје.
+			* Така што го правиме следново:
+
+					var mangoFruit = new Fruit ("Yellow", 8, "Mango", 
+												["South America", "Central America", "West Africa"]);
+					
+					mangoFruit.showName(); // This is a Mango.​
+					mangoFruit.nativeTo();
+					​// Grown in:South America​
+					​// Grown in:Central America​
+					​// Grown in:West Africa​
+					​
+					​var pineappleFruit = new Fruit ("Brown", 5, "Pineapple", ["United States"]);
+					pineappleFruit.showName(); // This is a Pineapple.
+					pineappleFruit.nativeTo();
+					// Grown in:United States
+
+			* Доколку сакаме да ја промениме функцијата showName() ќе ја промениме само на едно место.
+			* Моделот (pattern-от) ги eнкапсулира(encapsulates) сите функционалности и карактеристики 
+			  за сите овошја креирајќи само една Fruit функција со наследување(inheritance).
+
+			* ЗАБЕЛЕШКА:
+
+					~ Наследената сопственост(property) е дефинирана во прототипната сопственост на Објектот.
+					  Пример:
+						someObject.prototype.firstName = “rich”;
+					
+					~ Сопствената сопственост(property) е дефинирана директно во самиот објект.
+					  Пример:
+					  	
+					  	// Да креираме прво еден објект
+						var aMango = new Fruit ();
+						
+						// Сега ја дефинираме сопственоста(propery-тo) на mangoSpice дирекно на објектот aMango.
+						// И бидејќи ја дефиниравме сопственоста(property) на mangoSpice дирекно на објектот
+						// aMango  
+						// сега е сопственост(property) на aMango, но не е наследната сопственост(property).
+						aMango.mangoSpice = “some value”;
+
+					~ За да пристапиме до сопственоста(property) на објектот ние користиме object.property
+						Пример:
+							console.log(aMango.mangoSpice); // “some value”
+
+					~ За да повикаме метод од Објект ние користиме object.method()
+						Пример:
+							// Прво креираме метод
+							aMango.printStuff = function () {
+								return “Printing”;
+							}
+
+							// И сега можеме да ја повикаме printStuff методата
+							aMango.printStuff();
+
+		2. Prototype Pattern for Creating Objects ---------------------------------------------
+
+			function Fruit () {}
+			​
+			Fruit.prototype.color = "Yellow";
+			Fruit.prototype.sweetness = 7;
+			Fruit.prototype.fruitName = "Generic Fruit";
+			Fruit.prototype.nativeToLand = "USA";
+			​
+			Fruit.prototype.showName = function () {
+				console.log("This is a " + this.fruitName);
+			}
+			​
+			Fruit.prototype.nativeTo = function () {
+			    console.log("Grown in:" + this.nativeToLand);
+			}
+
+			// Вака ја повикуваме Fruit () конструктор функцијата во овој прототип Модел(pattern).
+
+			var mangoFruit = new Fruit ();
+			mangoFruit.showName(); 		// This is a Generic Fruit​
+			mangoFruit.nativeTo();		// Grown in:USA
+			​
+
+			* Како да пристапиме до Сопственостите во еден Објект?
+				~ co "." 	-> 	(точка)
+
+					// До сега користевме во примерите повик со точка еве уште еден пример:
+					​// Креираме објект book 
+					var book = {
+							title: "Ways to Go", 
+							pages: 280, 
+							bookMark1:"Page 20"
+					};
+					​
+					​// За да пристапиме до сопственостa(properties) на book објектот со ТОЧКА повикот:​
+					console.log ( book.title ); 	// Ways to Go​
+					console.log ( book.pages ); 	// 280
+
+				~ со "[]" 	-> 	(загради)
+
+					// За да пристапиме до сопственостa(properties) на book објектот со ЗАГРАДИ повикот:​
+					console.log ( book["title"] ); 	//Ways to Go​
+					console.log ( book["pages"] ); 	// 280​
+					​
+					​//Or, in case you have the property name in a variable:​
+					// Или во случај да имаме име на сопственост(property name) во вариабла:
+					​var bookTitle = "title";
+					console.log ( book[bookTitle] ); 		// Ways to Go​
+					console.log ( book["bookMark" + 1] ); 	// Page 20 
+
+			* Пристапот до сопственост(property) на објектот кој што не постои ќе резултира 
+			  со undefined вредност.
+==============================================================================================================
+8. Објект кој поседува наследенa сопственост(inherited property)
+==============================================================================================================
+
+		* Објектот има свои и наследени сопствености(properties)
+		* Сопственостите(properties) свои се оние кои ги дефинираме во самиот Објект
+		* Наследените сопствености(properies) се оние кои се наследени од прототипните Објекти.
+
+		* За да видиме дали сопственоста(property) постои во Објектот, без разлика дали е наследен или 
+		  сопствен користиме "in" оператор:
+
+		  	// Креираме нов school објект со име на сопственост (property name) schoolName​
+		  	// со вредност "MIT"
+			​var school = {schoolName:"MIT"};
+			​
+			​// Ќе испечати true затоа што schoolName е сопствен property во school Објектот
+			console.log("schoolName" in school);  // true​
+			​
+			​// Ќе испечати false затоа што не дефиниравме schoolType цопственост(property) 
+			// во school Објектот и не е ниту наследен schoolType цопствеността од прототипниот 
+			// објект Object.prototype.​
+			console.log("schoolType" in school);  // false​
+			 
+			​// Ќе испечати true затоа што school Објектот го наследува toString методот од 
+			// Object.prototype. ​
+			console.log("toString" in school);  // true
+==============================================================================================================	
+9. hasOwnProperty метод кој проверува дали има сопствен property објектот.
+==============================================================================================================
+
+		// Креираме нов school објект со име на сопственост (property name) schoolName​
+		// со вредност "MIT"
+		​var school = {schoolName:"MIT"};
+		​
+		​// Ќе испринта true затоа што schoolName е сопствен property во school објектот.
+		console.log(school.hasOwnProperty ("schoolName"));  // true​
+		 
+		​// Ќе испринта false затоа што school Објектот го наследува(inherited) toString методот од
+		// Object.prototype, така што toString не е сопствен property на school Објектот.​
+		console.log(school.hasOwnProperty ("toString"));  // false 
+==============================================================================================================
+10. Пристапување и Пребројување на сопствености(property) на Објект.
+==============================================================================================================
+		* Користиме for/in loop или класичен for loop.
+			
+			// Креираме нов school object со 3 свои properties: 
+			// schoolName, schoolAccredited и schoolLocation.​
+			​var school = {
+					schoolName:"MIT", 
+					schoolAccredited: true, 
+					schoolLocation:"Massachusetts"
+			};
+			​
+			​// Користиме for/in loop за да пристапиме до properties во school object​-от
+			​for (var eachItem in school) {
+				console.log(eachItem); 	// Prints schoolName, schoolAccredited, schoolLocation​
+			}
+==============================================================================================================
+11. Пристап до наследените сопствености(properties)
+==============================================================================================================
+	* Сопственостите(properties) наследени од Object.prototype неможат да се пребројат,
+	  така што for/in loop не ги покажува. 
+	* Сепак наследените сопствености(properties) кои можат да се пребројат се пребројуваат со
+	  for/in loop. Пример:
+	  	
+	  	// Користиме for/in loop за да пристапиме до сопственостите(properties) во school object​
+		​for (var eachItem in school) {
+			console.log(eachItem); // Prints schoolName, schoolAccredited, schoolLocation​
+		}
+		​
+		​// Креираме нова HigherLearning функција каде што school object ќе наследува.​
+		​
+		/* SIDE NOTE: As Wilson (an astute reader) correctly pointed out in the comments below, the educationLevel property is not 
+		actually inherited by objects that use the HigherLearning constructor; instead, the educationLevel property is created as 
+		a new property on each object that uses the HigherLearning constructor. The reason the property is not inherited is because 
+		we use of the "this" keyword to define the property.
+		*/​
+		​
+		​
+		​function HigherLearning () {
+		​ 	this.educationLevel = "University";
+		}
+		​
+		​// Имплементираме наследување во HigherLearning constructor​
+		​var school = new HigherLearning ();
+		school.schoolName = "MIT";
+		school.schoolAccredited = true;
+		school.schoolLocation = "Massachusetts";
+		​
+		​
+		​// Користиме for/in loop за да пристапиме до цопственостите(properties) во school object​
+		​for (var eachItem in school) {
+		console.log(eachItem); // Prints educationLevel, schoolName, schoolAccredited, and schoolLocation​
+		} 	
+
+		// ПРИМЕТИ ДЕКА educationLevel Е ИНЈЕКТИРАН ОД HigherLearning()
+
+==============================================================================================================
+12. Бришење на сопственост(properties) од Објект
+==============================================================================================================
+
+	* За да избришеме сопственост(property) од објект го користиме delete операторот.
+	* Неможеме да избришеме сопственост(properties) која е инјектирана, ниту да ја избришеме
+	  сопственоста(property) со своите атрибути во конфигурацијата.
+	* Мораме прво да ги избришеме наследените(inherited) сопствености(properies) од 
+	  prototype object, каде што се дефинирани сопственостите(properties).
+	* Исто така неможеме да ги бришеме сопственостите(properties) од глобалниот Објект кој
+	  што е деклариран со var.
+	* Delete операторот враќа вредност true ако бришењето е успешно.
+	* И изненадувачки исто така враќа вредност true ако сопственоста(property) не постои или ако
+	  сопственоста(property) не може да се избрише(ако е некофигурабилно или не е во сопственост 
+	  на објекот). Пример:
+
+	  	var christmasList = {
+	  			mike:"Book", 
+	  			jason:"sweater" 
+	  	}
+		​delete christmasList.mike; // го брише mike property​-то
+		​
+		​for (var people in christmasList) {
+			console.log(people);
+		}
+		​// Го принта само jason​
+		​// mike property-то е избришано
+		​
+		​delete christmasList.toString; 
+		// враќа true, но toString не е избришано затоа што е наследен метод.
+		​
+		​// Тука го повикуваме toString методот и си работи како што треба
+		// гледаме дека не е избришан. ​
+		christmasList.toString(); //"[object Object]"​
+		​
+		​// Можеме да избришеме сопственост(property) од инстанца ако сопственоста(propery) си е негова сопствена сопственост(property) на таа инстанца. ПРИМЕР, можеме да го избришеме educationLevel property-то from the school's object we created above because the educationLevel property is defined on the instance: we used the "this" keyword to define the property when we declare the HigherLearning function. We did not define the educationLevel property on the HigherLearning function's prototype.​
+		​
+		console.log(school.hasOwnProperty("educationLevel")); // true​
+		​// educationLevel e сопствено property на school, и можеме да го избришеме
+		​delete school.educationLevel; // true 
+		​
+		​// еducationLevel property е избришано од school инстанцата​
+		console.log(school.educationLevel); // undefined
+		​
+		​// Но, educationLevel property е сеуште во HigherLearning function​
+		​var newSchool = new HigherLearning ();
+		console.log(newSchool.educationLevel); // University​
+		​
+		​// Ако го дефиниравме property-то како HigherLearning function prototype, како educationLevel2 property:​
+		HigherLearning.prototype.educationLevel2 = "University 2";
+		​
+		​// Тогаш educationLevel2 property од инстанцата на HigherLearning нема да биде сопствено property. ​
+		​
+		​// educationLevel2 property не е сопствено property во school инстанцата
+		console.log(school.hasOwnProperty("educationLevel2")); false​
+		console.log(school.educationLevel2); // University 2​
+		​
+		​// Ајде да го избришеме наследеното educationLevel2 property​
+		​delete school.educationLevel2; true (always returns true, as noted earlier)
+		​
+		​// Наследеното educationLevel2 property не е избришано.
+		console.log(school.educationLevel2); University 2​
+
+==============================================================================================================
+13. Serialize and Deserialize Objects
+==============================================================================================================
+	To transfer your objects via HTTP or to otherwise convert it to a string, you will need to serialize it (convert it to a string); you can use the JSON.stringify function to serialize your objects. Note that prior to ECMAScript 5, you had to use a popular json2 library (by Douglas Crockford) to get the JSON.stringify function. It is now standardized in ECMAScript 5.
+
+	To Deserialize your object (convert it to an object from a string), you use the JSON.parse function from the same json2 library. This function too has been standardized by ECMAScript 5.
+
+	JSON.stringify Examples:
+		var christmasList = {mike:"Book", jason:"sweater", chelsea:"iPad" }
+		JSON.stringify (christmasList);
+		​// Prints this string:​
+		​// "{"mike":"Book","jason":"sweater","chels":"iPad"}"
+		​
+		​// To print a stringified object with formatting, add "null" and "4" as parameters:​
+		JSON.stringify (christmasList, null, 4);
+		"{
+		    "mike": "Book",
+		    "jason": "sweater",
+		    "chels": "iPad"​
+		}"
+		​
+		​// JSON.parse Examples \\​
+		// The following is a JSON string, so we cannot access the properties with dot 
+		// notation (like christmasListStr.mike)​
+		​var christmasListStr = '{"mike":"Book","jason":"sweater","chels":"iPad"}';
+		​
+		​// Let’s convert it to an object​
+		​var christmasListObj = JSON.parse (christmasListStr); 
+		​
+		​// Now that it is an object, we use dot notation​
+		console.log(christmasListObj.mike); // Book
