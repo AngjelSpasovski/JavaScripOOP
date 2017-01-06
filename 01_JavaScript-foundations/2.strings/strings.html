@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>String Basic</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	/* JavaScripr Strings*/
+
+	// Вариабла name со string вредност 
+	var name = "Angjel Spasovski";
+	console.log(name);
+
+	// Вариабла name2 со string вредност 
+	var name2 = "Angele od Rabota";
+	console.log(name2);
+
+	// Вариабла statement со string вредност и правилен стандард за пишување string-ови
+	// Во внатрешниот дел на дуплите наводници " тука " се пишува текстот
+	// Доколку сакаме да внесеме апостров во текстот, тогаш користиме единечен.
+	// Пример " it's ".
+	var statement = "this is Angel's string"
+	console.log(statement);
+
+	// Доколку користиме дупли наводници во текстот, во тој случај внатрешността на текстот
+	// ја дефинираме со единечни наводници.
+	var statement2 = 'She said: "Ohh jeeaa!!". And ...';
+	console.log(statement2);
+
+	// Нодоколку имаме комбиниран текст со наводници тогаш користиме backslash \ пред апострофот и наводниците
+	var statement3 = 'She said: \"That\'s my place!!!\"';
+	console.log(statement3);
+
+console.log("#_2 - Escape characters ------------------");
+	// Во овој случај backslash \ не ги прикажува карактерите кои се веднаш до него
+	// Бидејки има специјално значење за приказ на текст
+	var path = "C:\folder\myfile.txt"
+	console.log(path); 		// C:olderyfile.txt
+
+	// за да го решиме овој проблем користме дупли \\ за приказ на само еден backslash
+	var path = "C:\\folder\\myfile.txt"
+	console.log(path); 		// C:\folder\myfile.txt
+
+	// Текст со повеќе редови не е возможен.
+	var multiline = "This is line 1,This is line 2, This is line 3";
+	//This is line 2,
+	//This is line 3"
+	console.log(multiline);
+
+	// За таков приказ користиме "new line caracter ===> \n "
+	var multiline2 = "This is line 1,\nThis is line 2,\nThis is line 3";
+	console.log(multiline2);
+
+	// Ако сакаме да ставиме tab простор измеѓу зборовите користиме \t
+	var multiline3 = "This is line 1,\tThis is line 2,\tThis is line 3";
+	console.log(multiline3);
+
+console.log("#_3 - Concatenation (join them togeder) ------------------");
+	
+	// saySomething прима вредност од два стринга со помош на '+' операторот
+	var saySomething = "Something" + " Something else";
+	console.log(saySomething);
+	
+	var sayHello = "Hello ";
+	var sayWorld = "World";	
+	var sayHelloWorld = sayHello + sayWorld;
+	console.log(sayHelloWorld);
+	console.log(sayHelloWorld + " !!!")
+
+	// Креирање на текст со повеќе линии во кодот за попргледно кодирање,
+	// но на излез е во еден ред со помош на '+' операторот.
+	var multiline4 = 	"This is line 1," + 
+						"This is line 2," + 
+						"This is line 3";
+	console.log(multiline4);
+
+console.log("#_4 - Methods ------------------");
+	
+	// Должина на карактери на вариаблата sayHelloWorld
+	var length = sayHelloWorld.length;
+	console.log("Dolzina na karakterite : " + length);
+
+	// Ќе испечати "Hello World 12"
+	console.log(sayHelloWorld, length);
+
+	// Проверка од кој индекс почнува стрингот Wold
+	// индексите почнуваат да се бројат од 0.
+	var index = sayHelloWorld.indexOf("World");
+	console.log(index); // 6 
+
+	// indexOf() is kay sensitive
+	var index2 = sayHelloWorld.indexOf("world");
+	// Враќа вредност -1, бидејки не постои зборот кој го бараме, world  е со мала буква.
+	console.log(index2); // -1
+
+	// Креираме услов што проверува дали во стрингот постои големо "W".
+	if(sayHelloWorld.indexOf("W") !== -1){
+		console.log("W exist in string");
+	} else {
+		console.log("W does not exist");
+	} // W exist in string
+
+	// charAt се користи за пронаоѓање на вредността на зададениот индекс
+	// Индексите почнуваат да се бројат од 0.
+	// Во Hello World на позиција 1 е буквата 'e'
+	console.log(sayHelloWorld.charAt(1)); // e 
+
+console.log("#_5 - Methods part 2------------------");
+
+	// SubString каде што го одбележуваме start-ниот индекс 
+	// и length колку индекси после стартниот индекс да оди по низата.
+	// substr(start, length);
+	var world = sayHelloWorld.substr(6, 5);
+	// од Hello World 
+	console.log(world); // World
+
+	// Сите ГОЛЕМИ букви ви прави мали, но не ги менува во оригиналниот стринг
+	console.log(sayHelloWorld.toLowerCase()); // hello world
+	// Сите мали букви ви прави ГОЛЕМИ, но не ги менува во оригиналниот стринг
+	console.log(sayHelloWorld.toUpperCase()); // HELLO WORLD
+	// Проверка дека само ги претвара во мали или големи, но не ги менува.
+	console.log(sayHelloWorld); // Hello World
+
+
+
+</script>
+</body>
+</html>
